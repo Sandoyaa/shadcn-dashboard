@@ -5,7 +5,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
@@ -18,7 +17,7 @@ import {
   SidebarSeparator
 } from '@/components/ui/sidebar'
 import { currentUser } from '@/constants/user'
-import { ChevronDown, ChevronUp, CreditCard, Home, Plus, User2, Users } from 'lucide-react'
+import { ChevronDown, ChevronUp, CreditCard, Home, User2, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -65,12 +64,9 @@ export const AppSidebar = () => {
         <Collapsible defaultOpen className='group/collapsible'>
           <SidebarGroup>
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger>
+              <CollapsibleTrigger className='cursor-pointer'>
                 Quick Links
                 <ChevronDown className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180' />
-                <SidebarGroupAction>
-                  <Plus /> <span className='sr-only'>Add Link</span>
-                </SidebarGroupAction>
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
