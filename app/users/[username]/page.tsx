@@ -19,6 +19,10 @@ import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import { currentUser } from '@/constants/user'
 import { BadgeCheck, Crown, Shield, Star } from 'lucide-react'
 
+export async function generateStaticParams() {
+  return [{ username: 'sandoya' }]
+}
+
 export default function SingleUserPage() {
   return (
     <div>

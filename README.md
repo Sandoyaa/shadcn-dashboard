@@ -16,7 +16,7 @@ A modern admin dashboard built with Next.js 16, React 19, and shadcn/ui componen
 
 ## Implemented Modules and Features
 
-- Built a responsive dashboard layout with collapsible sidebar and persistent state via cookies
+- Built a responsive dashboard layout with collapsible sidebar
 - Implemented dark/light theme switching with system preference detection
 - Created interactive data visualization widgets (Bar, Area, Pie, Line charts) using Recharts
 - Developed a payments page with a full-featured DataTable: sorting, pagination, row selection, and row actions dropdown
