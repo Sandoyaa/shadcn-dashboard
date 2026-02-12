@@ -1,15 +1,5 @@
-import {
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  Home,
-  Inbox,
-  Plus,
-  ProjectorIcon,
-  Search,
-  Settings,
-  User2
-} from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import {
   Sidebar,
   SidebarContent,
@@ -20,64 +10,34 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarSeparator
-} from '@/components/ui/sidebar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import Link from 'next/link';
-import Image from 'next/image';
+} from '@/components/ui/sidebar'
+import { currentUser } from '@/constants/user'
+import { ChevronDown, ChevronUp, CreditCard, Home, Plus, User2, Users } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import avatarImg from '@/app/avatar.png';
-
-const items = [
-  {
-    title: 'Home',
-    url: '/',
-    icon: Home
-  },
-  {
-    title: 'Inbox',
-    url: '#',
-    icon: Inbox
-  },
-  {
-    title: 'Calendar',
-    url: '#',
-    icon: Calendar
-  },
-  {
-    title: 'Search',
-    url: '#',
-    icon: Search
-  },
-  {
-    title: 'Settings',
-    url: '#',
-    icon: Settings
-  }
-];
+const mainNav = [
+  { title: 'Dashboard', url: '/', icon: Home },
+  { title: 'Users', url: '/users', icon: Users },
+  { title: 'Payments', url: '/payments', icon: CreditCard }
+]
 
 export const AppSidebar = () => {
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader className="py-4">
+    <Sidebar collapsible='icon'>
+      <SidebarHeader className='py-4'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/">
-                <Image src={avatarImg} alt="logo" width={26} height={26} className="rounded-full" />
-                <span>Serhii Surzhykov</span>
+              <Link href='/'>
+                <Image src={currentUser.avatar} alt='logo' width={26} height={26} className='rounded-full' />
+                <span>{currentUser.name}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -86,10 +46,10 @@ export const AppSidebar = () => {
       <SidebarSeparator />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {mainNav.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
@@ -97,55 +57,20 @@ export const AppSidebar = () => {
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
-                  {item.title === 'Inbox' && <SidebarMenuBadge>17</SidebarMenuBadge>}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
-          <SidebarGroupAction>
-            <Plus /> <span className="sr-only">Add Project</span>
-          </SidebarGroupAction>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/#">
-                    <ProjectorIcon />
-                    See all Projects
-                  </Link>
-                </SidebarMenuButton>
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/#">
-                        <Plus />
-                        Add Project
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/#">
-                        <Plus />
-                        Add Category
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        {/*COLLAPSIBLE*/}
-        <Collapsible defaultOpen className="group/collapsible">
+        <Collapsible defaultOpen className='group/collapsible'>
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
-                Collapsible
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                Quick Links
+                <ChevronDown className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180' />
+                <SidebarGroupAction>
+                  <Plus /> <span className='sr-only'>Add Link</span>
+                </SidebarGroupAction>
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
@@ -153,20 +78,26 @@ export const AppSidebar = () => {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link href="/#">1</Link>
+                      <Link href='/users/Sandoya'>My Profile</Link>
                     </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/#">2</Link>
-                    </SidebarMenuButton>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link href='/payments'>View Payments</Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link href='/users'>Manage Users</Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
                   </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
-        {/*NESTED*/}
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
@@ -174,12 +105,13 @@ export const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Serhii Surzhykov <ChevronUp className="ml-auto" />
+                  <User2 /> {currentUser.name} <ChevronUp className='ml-auto' />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Account</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuContent align='end'>
+                <DropdownMenuItem asChild>
+                  <Link href='/users/Sandoya'>Account</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -187,5 +119,5 @@ export const AppSidebar = () => {
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  );
-};
+  )
+}

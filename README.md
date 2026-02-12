@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShadCN Dashboard
+
+A modern admin dashboard built with Next.js 16, React 19, and shadcn/ui components.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, Server Components)
+- **UI Library:** shadcn/ui (Radix UI primitives)
+- **Styling:** Tailwind CSS 4, class-variance-authority
+- **Charts:** Recharts
+- **Tables:** TanStack React Table
+- **Forms:** React Hook Form + Zod validation
+- **Icons:** Lucide React
+- **Theme:** next-themes (light/dark mode)
+- **Package Manager:** pnpm
+
+## Implemented Modules and Features
+
+- Built a responsive dashboard layout with collapsible sidebar and persistent state via cookies
+- Implemented dark/light theme switching with system preference detection
+- Created interactive data visualization widgets (Bar, Area, Pie, Line charts) using Recharts
+- Developed a payments page with a full-featured DataTable: sorting, pagination, row selection, and row actions dropdown
+- Built a user profile page with hover-card badges, progress indicators, and editable user info via Sheet panel
+- Created a dynamic edit form with Zod schema validation and React Hook Form integration
+- Implemented reusable CardList component rendering both transactions (with dates, amounts) and popular content (with
+  view counts)
+- Designed a breadcrumb-based navigation system linking dashboard, users list, and individual profiles
+- Organized project architecture with shared types, centralized mock data, constants, and a reusable DashboardCard
+  wrapper
+
+## Project Structure
+
+```
+app/                    # Next.js App Router pages
+  payments/             # Payments page with DataTable
+  users/                # Users list & single user profile
+components/             # Reusable components
+  ui/                   # shadcn/ui primitives
+constants/              # App-wide constants (current user)
+data/                   # Mock data (payments, transactions, content)
+types/                  # Shared TypeScript types
+hooks/                  # Custom React hooks
+lib/                    # Utility functions
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm build
+pnpm start
+```
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push to GitHub and import the repository at [vercel.com/new](https://vercel.com/new). Vercel auto-detects Next.js — no
+extra configuration needed.

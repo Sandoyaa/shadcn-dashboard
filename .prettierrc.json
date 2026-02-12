@@ -2,13 +2,14 @@
   "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
-  "semi": true,
+  "semi": false,
   "quoteProps": "as-needed",
-  "jsxSingleQuote": false,
+  "jsxSingleQuote": true,
   "trailingComma": "none",
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "always",
   "singleQuote": true,
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }
