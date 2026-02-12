@@ -20,7 +20,7 @@ import { currentUser } from '@/constants/user'
 import { BadgeCheck, Crown, Shield, Star } from 'lucide-react'
 
 export async function generateStaticParams() {
-  return [{ username: 'sandoya' }]
+  return [{ username: 'Sandoya' }]
 }
 
 export default function SingleUserPage() {
