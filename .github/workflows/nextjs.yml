@@ -33,13 +33,10 @@ jobs:
       - name: Build
         run: pnpm exec next build
 
-      - name: Export static site
-        run: pnpm exec next export
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: .next/export
 
   deploy:
     needs: build
